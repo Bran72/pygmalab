@@ -8,7 +8,18 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+  export default {
+    data () {
+      return {
+        toto: 'toto'
+      }
+    },
+    mounted() {
+      console.log(this.$store.getters.test)
+    }
+  }
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
