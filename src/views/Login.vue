@@ -2,10 +2,10 @@
     <section>
         <form>
             <b-field label="Email">
-                <b-input v-model="email" placeholder="email..."></b-input>
+                <b-input v-model="email" placeholder="email..." @keyup.native.enter="login"></b-input>
             </b-field>
             <b-field label="Mot de passe">
-                <b-input type="password" v-model="password" placeholder="mot de passe..."></b-input>
+                <b-input type="password" v-model="password" placeholder="mot de passe..." @keyup.native.enter="login"></b-input>
             </b-field>
             <b-button @click="login">Se connecter</b-button>
         </form>

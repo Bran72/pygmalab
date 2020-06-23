@@ -132,4 +132,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .mt-075 {margin-top: .75rem !important}
+  .mr-075 {margin-right: .75rem !important}
+  .ml-075 {margin-left: .75rem !important}
+  .mb-075 {margin-bottom: .75rem !important}
 </style>
