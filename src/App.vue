@@ -48,6 +48,10 @@
       background-color: $pygmaLabPurple;
       padding: 2rem;
       overflow-y: scroll;
+
+      > div {
+        height: auto;
+      }
     }
   }
 
