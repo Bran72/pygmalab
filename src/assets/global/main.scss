@@ -9,6 +9,7 @@ html, body {overflow-y: hidden}
   background: #F3F6FF;
 }
 .tile.is-child {
+  display: flex;
   margin: 1.25rem !important;
   padding: 2rem;
 }
@@ -27,5 +28,3 @@ html, body {overflow-y: hidden}
   box-shadow: inset -18px -18px 30px rgba(255, 255, 255, 0.8), inset 18px 18px 30px rgba(209, 217, 230, 0.8);
   border-radius: 40px;
 }
-
-
