@@ -4,7 +4,6 @@
 
     <section id="container">
       <router-view/>
-      <div class="tile"></div>
     </section>
   </div>
 </template>
@@ -38,7 +37,7 @@
 
     &#container {
       flex: 1;
-      background: #F3F6FF;
+      background-color: $pygmaLabPurple;
       border-top-left-radius: 65px;
       border-bottom-left-radius: 65px;
     }
@@ -49,7 +48,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: $pygmaLabPurple;
 
   #nav {
     padding: 30px;
