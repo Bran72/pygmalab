@@ -59,6 +59,7 @@
         max-width: 120px;
         width: 100px;
         min-width: 80px;
+        background: #fff;
 
         #nav {
             display: flex;
