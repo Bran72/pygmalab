@@ -57,17 +57,19 @@
 <style lang="scss" scoped>
     #toolbar {
         flex-basis: 8%;
-        max-width: 120px;
         width: 100px;
-        min-width: 80px;
+        min-width: 100px;
+        height: auto;
         background: #fff;
 
         #nav {
+            position: fixed;
+            width: 100px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
-            padding: 3rem 1rem;
+            padding: 3rem 0;
 
             .nav-logo {
                 img {

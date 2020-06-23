@@ -3,6 +3,10 @@
     <Toolbar v-if="user !== null" />
 
     <section id="container">
+      <div v-if="user !== null" class="overflow-trick" style="margin-left: 120px">
+      </div>
+      <div v-else class="overflow-trick">
+      </div>
       <router-view/>
     </section>
   </div>
@@ -35,22 +39,34 @@
 <style lang="scss">
 #app {
   display: flex;
-  height: 100vh;
-  max-height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  //max-height: 100vh;
 
   > section {
     height: 100%;
 
     &#container {
+      position: relative;
       flex: 1;
-      border-top-left-radius: 65px;
-      border-bottom-left-radius: 65px;
-      background-color: $pygmaLabPurple;
       padding: 2rem;
-      overflow-y: scroll;
+      //overflow-y: scroll;
 
       > div {
-        height: auto;
+        height: 100%;
+        min-height: 100%;
+
+        &.overflow-trick {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          border-top-left-radius: 65px;
+          border-bottom-left-radius: 65px;
+          background-color: $pygmaLabPurple;
+          z-index: -1;
+        }
       }
     }
   }

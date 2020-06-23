@@ -1,11 +1,11 @@
 * {background: transparent}
-html, body {overflow-y: hidden}
+//html, body {overflow-y: hidden}
 
 
 .home {height: 100%;}
 
 .is-ancestor {height: 100%; padding: 1rem}
-.tile:not(.is-parent) {
+.tile:not(.is-parent):not(.is-ancestor) {
   background: #F3F6FF;
 }
 .tile.is-child {
@@ -28,3 +28,5 @@ html, body {overflow-y: hidden}
   box-shadow: inset -18px -18px 30px rgba(255, 255, 255, 0.8), inset 18px 18px 30px rgba(209, 217, 230, 0.8);
   border-radius: 40px;
 }
+
+.jc-center {justify-content: center}

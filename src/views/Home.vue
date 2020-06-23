@@ -100,14 +100,11 @@
         <NewProject class="box-sh-inline is-vertical" />
       </div>
       <div class="tile is-parent">
-        <article class="tile box-sh-outline is-child">
+        <article class="tile box-sh-outline is-child jc-center">
           <div class="content">
             <Calendar title-position="left" :attributes="attrs" />
             <div class="subtitle is-6">Evènements à venir</div>
             <ul>
-              <li class="event box-sh-outline">Toto</li>
-              <li class="event box-sh-outline">Toto</li>
-              <li class="event box-sh-outline">Toto</li>
               <li class="event box-sh-outline">Toto</li>
               <li class="event box-sh-outline">Toto</li>
               <li class="event box-sh-outline">Toto</li>
