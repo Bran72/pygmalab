@@ -1,4 +1,29 @@
 * {background: transparent}
 html, body {overflow-y: hidden}
 
-.tile.is-parent {padding: 2.75rem !important;}
+
+.home {height: 100%;}
+
+.is-ancestor {height: 100%; padding: 1rem}
+.tile:not(.is-parent) {
+  background: #F3F6FF;
+}
+.tile.is-child {
+  margin: 1.75rem !important;
+  padding: 2rem;
+}
+
+.boxcustom {
+  margin: 1rem;
+}
+
+.box-sh-outline {
+  background: #F3F6FF;
+  box-shadow: -18px -18px 30px rgba(255, 255, 255, 0.8), 18px 18px 30px rgba(209, 217, 230, 0.8);
+  border-radius: 40px;
+}
+.box-sh-inline {
+  background: #F3F6FF;
+  box-shadow: inset -18px -18px 30px rgba(255, 255, 255, 0.8), inset 18px 18px 30px rgba(209, 217, 230, 0.8);
+  border-radius: 40px;
+}
