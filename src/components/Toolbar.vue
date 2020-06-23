@@ -29,7 +29,9 @@
                 </router-link>
             </div>
             <div class="nav-item" @click="logout">
-                <img alt="Déconnexion" src="../assets/icons/logout.svg">
+                <router-link to="/login">
+                    <img alt="Déconnexion" src="../assets/icons/logout.svg">
+                </router-link>
             </div>
         </div>
     </section>
@@ -47,7 +49,6 @@
         methods: {
             logout () {
                 store.dispatch("fetchUser",  null);
-                this.$router.replace('/login')
             }
         }
     }

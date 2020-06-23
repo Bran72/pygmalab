@@ -25,7 +25,10 @@ const models = [
             rendered: ['link1', 'link2'],
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
-        }
+        },
+        clientId: 4,
+        status: 'En cours',
+        freelanceId: 3
     },
     {
         id: 2,
@@ -53,7 +56,10 @@ const models = [
             rendered: ['link1', 'link2'],
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
-        }
+        },
+        clientId: 4,
+        status: 'En attente',
+        freelanceId: 3
     }
 ];
 

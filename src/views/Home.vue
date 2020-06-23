@@ -102,11 +102,16 @@
       <div class="tile is-parent">
         <article class="tile box-sh-outline is-child">
           <div class="content">
-            <p class="title">Tall tile</p>
-            <p class="subtitle">With even more content</p>
-            <div class="content">
-              <!-- Content -->
-            </div>
+            <Calendar title-position="left" :attributes="attrs" />
+            <div class="subtitle is-6">Evènements à venir</div>
+            <ul>
+              <li class="event box-sh-outline">Toto</li>
+              <li class="event box-sh-outline">Toto</li>
+              <li class="event box-sh-outline">Toto</li>
+              <li class="event box-sh-outline">Toto</li>
+              <li class="event box-sh-outline">Toto</li>
+              <li class="event box-sh-outline">Toto</li>
+            </ul>
           </div>
         </article>
       </div>
@@ -115,17 +120,28 @@
 </template>
 
 <script>
-//import HelloWorld from '@/components/HelloWorld.vue'
 import NewProject from '../components/Cards/NewProject'
+import { Calendar } from 'v-calendar'
 
 export default {
   name: 'Home',
   components: {
-    NewProject
+    NewProject,
+    Calendar
   },
   data () {
     return {
-      role: 'client'
+      role: 'client',
+      attrs: [
+        {
+          key: 'today',
+          highlight: true,
+          popover: {
+            label: 'Deadline: Chaise en bois',
+          },
+          dates: new Date(),
+        },
+      ]
     }
   },
 }
@@ -136,4 +152,23 @@ export default {
   .mr-075 {margin-right: .75rem !important}
   .ml-075 {margin-left: .75rem !important}
   .mb-075 {margin-bottom: .75rem !important}
+
+  .vc-container {
+    border: none;
+  }
+  .subtitle {
+    text-align: left;
+  }
+  ul {
+    margin: 0!important;
+    .event {
+      margin: 1rem 0;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      list-style: none
+    }
+  }
 </style>
