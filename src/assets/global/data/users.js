@@ -31,6 +31,14 @@ const users = [
         password: 'anthodu33',
         role: 'Client'
     },
+    {
+        id: 5,
+        name: 'admin',
+        email: 'admin',
+        imgUrl: 'http://placehold.it/40x40',
+        password: 'admin',
+        role: 'Admin'
+    }
 ];
 
 export default users;

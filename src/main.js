@@ -8,6 +8,9 @@ import 'buefy/dist/buefy.css'
 Vue.use(Buefy)
 Vue.config.productionTip = false
 
+import users from '../src/assets/global/data/users'
+store.dispatch("fetchUsers",  users);
+
 new Vue({
   router,
   store,
