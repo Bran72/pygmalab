@@ -43,9 +43,11 @@
 
     &#container {
       flex: 1;
-      background-color: $pygmaLabPurple;
       border-top-left-radius: 65px;
       border-bottom-left-radius: 65px;
+      background-color: $pygmaLabPurple;
+      padding: 2rem;
+      overflow-y: scroll;
     }
   }
 
