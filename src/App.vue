@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Toolbar />
+    <Toolbar v-if="user !== null" />
 
     <section id="container">
       <router-view/>
@@ -11,10 +11,16 @@
 
 <script>
   import Toolbar from './components/Toolbar'
+  import {mapGetters} from "vuex";
 
   export default {
     components: {
       Toolbar
+    },
+    computed: {
+        ...mapGetters({
+          user: 'user'
+        })
     },
     data () {
       return {

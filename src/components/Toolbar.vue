@@ -28,21 +28,26 @@
                     </svg>
                 </router-link>
             </div>
-            <div class="nav-item">
-                <router-link to="/logout">
-                    <img alt="Déconnexion" src="../assets/icons/logout.svg">
-                </router-link>
+            <div class="nav-item" @click="logout">
+                <img alt="Déconnexion" src="../assets/icons/logout.svg">
             </div>
         </div>
     </section>
 </template>
 
 <script>
+    import store from "../store";
+
     export default {
-        name: 'Toolbar.vue',
         data() {
             return {
                 isActive: true
+            }
+        },
+        methods: {
+            logout () {
+                store.dispatch("fetchUser",  null);
+                this.$router.replace('/login')
             }
         }
     }

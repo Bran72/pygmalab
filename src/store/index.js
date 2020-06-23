@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    users: [],
-    user: {},
+    users: null,
+    user: null,
   },
   getters: {
     users(state) {
