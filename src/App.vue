@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/dashboard">Dashboard</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Toolbar />
+
+    <section id="container">
+      <router-view/>
+      <div class="tile"></div>
+    </section>
   </div>
 </template>
 
 <script>
+  import Toolbar from './components/Toolbar'
+
   export default {
+    components: {
+      Toolbar
+    },
     data () {
       return {
         toto: 'toto'
@@ -24,6 +29,21 @@
 
 <style lang="scss">
 #app {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+
+  > section {
+    height: 100%;
+
+    &#container {
+      flex: 1;
+      background: #F3F6FF;
+      border-top-left-radius: 65px;
+      border-bottom-left-radius: 65px;
+    }
+  }
+
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
