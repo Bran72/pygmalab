@@ -40,11 +40,15 @@ export default {
 
 <style lang="scss" scoped>
     #card_calendar {
-        max-width: 360px;
+        //max-width: 360px;
+        > .content {
+            width: 100%;
+        }
     }
 
     .vc-container {
         border: none;
+        margin: 0 auto 5% auto;
     }
 
     .subtitle {

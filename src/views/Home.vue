@@ -94,7 +94,7 @@
     </div>
   </div>
   <div v-else class="home">
-    <div class="tile is-ancestor">
+    <div class="tile is-ancestor mh-100vh">
       <div class="tile is-parent is-vertical is-8">
         <NewProject class="box-sh-outline is-vertical" />
         <NewProject class="box-sh-inline is-vertical" />
