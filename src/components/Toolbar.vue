@@ -18,6 +18,7 @@
                     </svg>
                 </router-link>
                 <router-link to="/dashboard/projets">
+<!--                <router-link to="/new">-->
                     <svg width="29" height="29">
                         <path d="M26 16.1429H16.1429V26H12.8571V16.1429H3V12.8571H12.8571V3H16.1429V12.8571H26V16.1429Z" fill="#E6E9EF"/>
                     </svg>
