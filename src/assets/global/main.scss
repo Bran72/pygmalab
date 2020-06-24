@@ -29,6 +29,11 @@
   box-shadow: inset -18px -18px 30px rgba(255, 255, 255, 0.8), inset 18px 18px 30px rgba(209, 217, 230, 0.8);
   border-radius: 40px;
 }
+.box-sh-outline-small {
+  background: #F3F6FF;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+}
 
 .jc-center {justify-content: center}
 

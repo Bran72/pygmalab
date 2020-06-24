@@ -100,7 +100,7 @@
         <NewProject class="box-sh-inline is-vertical" />
       </div>
       <div class="tile is-parent">
-        <Calendar class="box-sh-outline jc-center" />
+        <Calendar class="box-sh-inline jc-center" />
       </div>
     </div>
   </div>
@@ -118,16 +118,6 @@ export default {
   data () {
     return {
       role: 'client',
-      attrs: [
-        {
-          key: 'today',
-          highlight: true,
-          popover: {
-            label: 'Deadline: Chaise en bois',
-          },
-          dates: new Date(),
-        },
-      ]
     }
   },
 }

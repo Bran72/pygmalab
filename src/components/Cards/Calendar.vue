@@ -4,9 +4,9 @@
             <Calendar title-position="left" :attributes="attrs" />
             <div class="subtitle is-6">Evènements à venir</div>
             <ul>
-                <li class="event box-sh-outline">Toto</li>
-                <li class="event box-sh-outline">Toto</li>
-                <li class="event box-sh-outline">Toto</li>
+                <li class="event box-sh-outline-small">Toto</li>
+                <li class="event box-sh-outline-small">Toto</li>
+                <li class="event box-sh-outline-small">Toto</li>
             </ul>
         </div>
     </article>

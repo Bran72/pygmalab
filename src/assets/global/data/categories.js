@@ -3,6 +3,7 @@ const categories = [
     'Nature',
     'Véhicules',
     'Informatique',
+    'Multimédia',
     'Mobilier',
     'Outillage',
     'Autres',
