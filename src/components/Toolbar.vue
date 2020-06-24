@@ -72,7 +72,7 @@
 
             .nav-logo {
                 img {
-                    width: 30px;
+                    width: 40px;
                 }
             }
 
