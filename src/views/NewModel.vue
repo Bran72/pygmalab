@@ -26,7 +26,7 @@
                         placeholder="Le nom du modèle"
                         rounded
                         required
-                        @keyup.native.enter="login"></b-input>
+                       ></b-input>
               </b-field>
               <b-field label="SKU*">
                 <b-input
@@ -34,53 +34,61 @@
                         v-model="form_data.sku"
                         placeholder="Le SKU est l'identifiant unique du modèle"
                         required
-                        rounded @keyup.native.enter="login"></b-input>
+                        rounded></b-input>
               </b-field>
-              <b-field label="Catégorie*">
-                <b-select
-                  v-model="form_data.category"
-                  placeholder="Select a character"
-                  expanded>
-                  <option
-                    v-for="(category, index) in categories"
-                    :value="category"
-                    :key="index">{{ category.name }}</option>
-                  <option value="flint">Flint</option>
-                  <option value="silver">Silver</option>
-                </b-select>
-              </b-field>
+              <div class="form_inline form_categ_section">
+                <b-field label="Catégorie*">
+                  <b-select
+                    v-model="form_data.category"
+                    placeholder="Choisir une catégorie"
+                    expanded>
+                    <option
+                        v-for="(category, index) in categories[0]"
+                        :value="category.name"
+                        :key="index">{{ category.name }}</option>
+                  </b-select>
+                </b-field>
+                <b-field v-if="form_data.category === 'Autres'" label="Autre catégorie">
+                  <b-input
+                          type="text"
+                          v-model="form_data.customCategory"
+                          placeholder="Votre catégorie"
+                          required
+                          rounded></b-input>
+                </b-field>
+              </div>
               <b-field label="Description">
                 <b-input
                         type="textarea"
                         v-model="form_data.description"
                         placeholder="Décrivez-nous votre projet en quelques lignes : Description du modèle, type de modélisation, etc."
                         required
-                        rounded @keyup.native.enter="login"></b-input>
+                        rounded></b-input>
               </b-field>
             </form>
           </div>
           <div class="form_right">
-            <div class="form_dimensions">
+            <div class="form_inline">
               <b-field label="Hauteur*">
                 <b-input
                         type="number"
                         v-model="form_data.dimensions.x"
                         required
-                        rounded @keyup.native.enter="login"></b-input>
+                        rounded></b-input>
               </b-field>
               <b-field label="Largeur*">
                 <b-input
                         type="text"
                         v-model="form_data.dimensions.y"
                         required
-                        rounded @keyup.native.enter="login"></b-input>
+                        rounded></b-input>
               </b-field>
               <b-field label="Profondeur*">
                 <b-input
                         type="text"
                         v-model="form_data.dimensions.z"
                         required
-                        rounded @keyup.native.enter="login"></b-input>
+                        rounded></b-input>
               </b-field>
             </div>
             <b-field label="Date de rendu souhaitée*">
@@ -92,6 +100,15 @@
                       trap-focus>
               </b-datepicker>
             </b-field>
+            <b-field label="Matériaux">
+              <b-taginput
+                  v-model="form_data.materials"
+                  ellipsis
+                  icon="label"
+                  placeholder="Ajouter des matériaux">
+              </b-taginput>
+            </b-field>
+            <p class="content"><b>Tags:</b> {{ form_data.materials }}</p>
           </div>
         </div>
         <div class="form_bottom">
@@ -110,15 +127,19 @@
     data () {
       return {
         step: 0,
+        materials: [],
+
         form_data: {
           name: '',
           sku: '',
-          category: [],
+          category: null,
+          customCategory: null,
           dimensions: {
             x: 0,
             y: 0,
             z: 0
-          }
+          },
+          materials: []
         }
       }
     },
@@ -226,11 +247,12 @@
             padding-right: 10%;
           }
 
-          .form_dimensions {
+          .form_inline {
             display: flex;
             justify-content: space-between;
             input:not(:last-child) {margin-right: 1rem}
           }
+          .form_categ_section > div {flex-basis: 50%}
         }
 
         .form_bottom {
@@ -250,19 +272,34 @@
 
 <style lang="scss">
   .form_newmodel {
-    input, textarea {
+    input, textarea, select {
       color: #2c3e50;
       background: transparent !important;
       box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.1) !important;
       margin-bottom: 1rem;
     }
+    .taginput {
+      color: #2c3e50;
+      background: transparent !important;
+      box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.1) !important;
+      margin-bottom: 1rem;
+      input {
+        box-shadow: none !important;
+      }
+    }
+    .taginput .taginput-container.is-focusable {background: transparent}
 
     .field .help {
       margin: -1rem auto 1rem;
     }
 
-    .form_dimensions {
+    .form_categ_section {
+      > div {margin-bottom: .75rem !important}
+    }
+    .form_inline {
       > div:not(:last-child) {margin-right: 2rem}
     }
+
+    .select {margin-bottom: 1rem}
   }
 </style>
