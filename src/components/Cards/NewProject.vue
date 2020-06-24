@@ -1,5 +1,5 @@
 <template>
-    <div class="tile is-child is-primary">
+    <div id="card_newproject" class="tile is-child is-primary">
         <p class="title">Demande de modélisation</p>
         <p class="subtitle">Je crée ma demande de modélisation</p>
         <div class="content">
@@ -17,6 +17,8 @@
 </script>
 
 <style lang="scss" scoped>
+    #card_newproject {max-height: 30%}
+
     .content {
         display: flex;
         height: 100%;

@@ -97,7 +97,7 @@
     <div class="tile is-ancestor mh-100vh">
       <div class="tile is-parent is-vertical is-8">
         <NewProject class="box-sh-outline is-vertical" />
-        <NewProject class="box-sh-inline is-vertical" />
+        <MyModels class="box-sh-outline" />
       </div>
       <div class="tile is-parent">
         <Calendar class="box-sh-inline jc-center" />
@@ -109,17 +109,30 @@
 <script>
 import NewProject from '../components/Cards/NewProject'
 import Calendar from '../components/Cards/Calendar'
+import MyModels from '../components/Cards/MyModels'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    NewProject, Calendar
+    NewProject,
+    Calendar,
+    MyModels
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    })
   },
   data () {
     return {
-      role: 'client',
+      role: 'client'
     }
   },
+  mounted () {
+    if(this.user === null || !this.user?.id)
+      this.$router.push('login')
+  }
 }
 </script>
 
