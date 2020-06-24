@@ -35,8 +35,8 @@ const models = [
             imgUrl: 'encours.svg'
         },
         freelanceId: null,
-        dateCreation: new Date('03/06/2020'),
-        dateDeadline: new Date('30/06/2020')
+        dateCreation: '03/06/2020',
+        dateDeadline: '30/06/2020'
 
     },
     {
@@ -75,8 +75,8 @@ const models = [
             imgUrl: 'encours.svg'
         },
         freelanceId: 3,
-        dateCreation: new Date('22/04/2020'),
-        dateDeadline: new Date('28/06/2020')
+        dateCreation: '22/04/2020',
+        dateDeadline: '28/06/2020'
     },
     {
         id: 3,
@@ -114,8 +114,8 @@ const models = [
             imgUrl: 'encours.svg'
         },
         freelanceId: 3,
-        dateCreation: new Date('08/06/2020'),
-        dateDeadline: new Date('29/06/2020')
+        dateCreation: '08/06/2020',
+        dateDeadline: '29/06/2020'
 
     }
 ];
