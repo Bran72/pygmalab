@@ -81,6 +81,9 @@
                         }
                         .modelStatus {
                             margin-left: 1rem;
+                            img {
+                                margin-right: .5rem;
+                            }
                         }
                     }
                     p {
