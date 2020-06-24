@@ -8,7 +8,7 @@
                     <div
                             v-if="user.id === model.clientId && user.role === 'Client' || user.id === model.freelanceId && user.role === 'Freelance'"
                             class="event box-sh-outline-small"
-                            @click="openModel">
+                            @click="openModel(model)">
                         <div>
                             <img :src="'/icons/categories/' + model.category.imgUrl" alt="">
                         </div>
@@ -55,8 +55,8 @@ export default {
         }
     },
     methods: {
-        openModel () {
-            console.log('open model')
+        openModel (model) {
+            this.$router.push({name:'Modele', params:{model: model}})
         }
     },
     mounted() {
@@ -96,6 +96,8 @@ export default {
 
     ul {
         margin: 0 !important;
+        max-height: 30vh;
+        overflow-y: scroll;
         li {
             list-style: none;
             .event {

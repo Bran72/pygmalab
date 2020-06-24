@@ -3,10 +3,8 @@
     <Toolbar v-if="user !== null" />
 
     <section id="container">
-      <div v-if="user !== null" class="overflow-trick" style="margin-left: 120px">
-      </div>
-      <div v-else class="overflow-trick">
-      </div>
+      <div v-if="user !== null" class="overflow-trick" style="margin-left: 120px"></div>
+      <div v-else class="overflow-trick"></div>
       <router-view/>
     </section>
   </div>

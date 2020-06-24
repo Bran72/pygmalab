@@ -26,9 +26,9 @@ const users = [
     {
         id: 4,
         name: 'Anthony Gault',
-        email: 'antho.gault@msn.com',
+        email: 'anto',
         imgUrl: 'http://placehold.it/40x40',
-        password: 'anthodu33',
+        password: 'anto',
         role: 'Client'
     },
     {

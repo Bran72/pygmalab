@@ -36,7 +36,7 @@
                 if(user.length === 1) {
                     // console.log('OK')
                     store.dispatch("fetchUser",  user[0]);
-                    this.$router.replace('/')
+                    this.$router.replace('/dashboard')
                 } else if (user.length === 0) {
                     console.log('Le compte n\'existe pas')
                 } else {
