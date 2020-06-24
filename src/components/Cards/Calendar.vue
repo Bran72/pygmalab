@@ -14,10 +14,14 @@
 
 <script>
 import { Calendar } from 'v-calendar'
+import { mapGetters } from "vuex";
 
 export default {
-    name: 'CardCalendar',
-
+    computed: {
+        ...mapGetters({
+            models: 'models'
+        })
+    },
     components: {
         Calendar
     },

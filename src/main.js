@@ -11,12 +11,14 @@ Vue.use(Buefy)
 Vue.config.productionTip = false
 
 import users from '../src/assets/global/data/users'
+import models from '../src/assets/global/data/models'
 
 Vue.use(VCalendar);
 Vue.use(Buefy);
 Vue.config.productionTip = false;
 
 store.dispatch("fetchUsers",  users);
+store.dispatch("fetchModels",  models);
 
 new Vue({
   router,

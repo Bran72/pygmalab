@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     users: null,
     user: null,
+    models: null
   },
   getters: {
     users(state) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     user(state) {
       return state.user
+    },
+    models(state) {
+      return state.models
     }
   },
   mutations: {
@@ -22,6 +26,9 @@ export default new Vuex.Store({
     },
     SET_USER(state, value) {
       state.user = value;
+    },
+    SET_MODELS(state, value) {
+      state.models = value;
     }
   },
   actions: {
@@ -30,6 +37,9 @@ export default new Vuex.Store({
     },
     fetchUser({ commit }, user) {
       commit("SET_USER", user);
+    },
+    fetchMModels({ commit }, models) {
+      commit("SET_MODELS", models);
     }
   },
   modules: {
