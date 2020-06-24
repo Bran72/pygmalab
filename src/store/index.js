@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     users: null,
     user: null,
-    models: null
+    models: null,
+    categories:  null,
   },
   getters: {
     users(state) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     models(state) {
       return state.models
+    },
+    categories(state) {
+      return state.categories
     }
   },
   mutations: {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
     },
     SET_MODELS(state, value) {
       state.models = value;
+    },
+    SET_CATEGORIES(state, value) {
+      state.categories = value;
     }
   },
   actions: {
@@ -40,6 +47,9 @@ export default new Vuex.Store({
     },
     fetchModels({ commit }, models) {
       commit("SET_MODELS", models);
+    },
+    fetchCategories({ commit }, categories) {
+      commit("SET_CATEGORIES", categories);
     }
   },
   modules: {
