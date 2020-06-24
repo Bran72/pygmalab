@@ -47,6 +47,7 @@ export default {
     }
 
     .vc-container {
+        width: 80%;
         border: none;
         margin: 0 auto 5% auto;
     }
@@ -66,6 +67,12 @@ export default {
             width: 100%;
             height: 50px;
             list-style: none
+        }
+    }
+
+    @media screen and (max-width: 1400px) {
+        .vc-container {
+            width: 100%;
         }
     }
 </style>
