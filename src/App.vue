@@ -58,7 +58,7 @@
       > div {
         height: 100%;
         //min-height: 100%;
-        min-height: calc(100vh - 3rem);
+        min-height: calc(100vh - 4rem);
 
         &.overflow-trick {
           position: fixed;

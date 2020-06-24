@@ -3,7 +3,7 @@
         <p class="title">Demande de modélisation</p>
         <p class="subtitle">Je crée ma demande de modélisation</p>
         <div class="content">
-            <router-link class="more-btn" to="/">
+            <router-link class="more-btn" to="/new">
                 +
             </router-link>
         </div>
