@@ -95,11 +95,11 @@
   </div>
   <div v-else class="home">
     <div class="tile is-ancestor mh-100vh">
-      <div class="tile is-parent is-vertical is-8">
+      <div class="tile is-parent is-vertical">
         <NewProject class="box-sh-outline is-vertical" />
         <NewProject class="box-sh-inline is-vertical" />
       </div>
-      <div class="tile is-parent">
+      <div class="tile is-parent is-4" style="min-width: 520px">
         <Calendar class="box-sh-inline jc-center" />
       </div>
     </div>
@@ -118,6 +118,16 @@ export default {
   data () {
     return {
       role: 'client',
+      attrs: [
+        {
+          key: 'today',
+          highlight: true,
+          popover: {
+            label: 'Deadline: Chaise en bois',
+          },
+          dates: new Date(),
+        },
+      ]
     }
   },
 }

@@ -32,6 +32,7 @@ const models = [
         clientId: 4,
         status: {
             name: 'En cours',
+            class: 'encours',
             imgUrl: 'encours.svg'
         },
         freelanceId: null,
@@ -72,6 +73,7 @@ const models = [
         clientId: 4,
         status: {
             name: 'En cours',
+            class: 'encours',
             imgUrl: 'encours.svg'
         },
         freelanceId: 3,
@@ -110,8 +112,9 @@ const models = [
         },
         clientId: 4,
         status: {
-            name: 'En cours',
-            imgUrl: 'encours.svg'
+            name: 'Envoyé',
+            class: 'envoye',
+            imgUrl: 'envoye.svg'
         },
         freelanceId: 3,
         dateCreation: '08/06/2020',

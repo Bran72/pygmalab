@@ -38,3 +38,24 @@
 .jc-center {justify-content: center}
 
 .mh-100vh {min-height: calc(100vh - 3rem)}
+
+
+// Status
+.enattente {
+  color: yellow;
+}
+.valide {
+  color: lightgreen;
+}
+.refuse {
+  color: lightcoral;
+}
+.encours {
+  color: $statutEnCours;
+}
+.termine {
+  color: lightblue;
+}
+.envoye {
+  color: $statutEnvoye
+}
