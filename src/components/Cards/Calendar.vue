@@ -4,12 +4,16 @@
             <Calendar title-position="left" :attributes="attrs" />
             <div class="subtitle is-6">Evènements à venir</div>
             <ul v-for="model in models" :key="model.id">
-                <li v-if="model.freelanceId === user.id" class="event box-sh-outline-small">
+                <li v-if="model.freelanceId === user.id" class="event box-sh-outline-small" @click="openModel">
                     <div class="modelName">
                         <img :src="'/icons/categories/' + model.category.imgUrl" alt="">
-                        <p>{{ model.nom }}</p>
+                        <div>
+                            <p>{{ model.nom }}</p>
+                            <span>{{ model.dateDeadline }}</span>
+                        </div>
                     </div>
                     <div class="modelStatus">
+                        <img :src="'/icons/status/' + model.status.imgUrl" alt="">
                         <p>{{ model.status.name }}</p>
                     </div>
                     <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,6 +52,11 @@ export default {
                 },
             ]
         }
+    },
+    methods: {
+        openModel () {
+            console.log('open model')
+        }
     }
 }
 </script>
@@ -75,12 +84,17 @@ export default {
 
         .event {
             margin: 1rem 0;
-            padding: 1rem;
+            padding: 2rem 1rem;
             display: flex;
             align-items: center;
             width: 100%;
             height: 50px;
             list-style: none;
+            transition: .3s;
+            &:hover {
+                cursor: pointer;
+                background-color: $pygmaLabPurpleHover;
+            }
             div {
                 display: flex;
                 p {
@@ -89,6 +103,26 @@ export default {
             }
             .modelName {
                 flex-grow: 1;
+                img {
+                    width: 24px;
+                    margin-right: 1rem;
+                }
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    p {
+                        margin-bottom: 0;
+                    }
+                    span {
+                        text-align: left;
+                        font-size: 10px;
+                    }
+                }
+            }
+            .modelStatus {
+                img {
+                    margin-right: .5rem;
+                }
             }
             svg {
                 margin-left: 1rem;
