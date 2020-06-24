@@ -8,6 +8,7 @@
 .tile:not(.is-parent):not(.is-ancestor) {
   background: #F3F6FF;
 }
+.tile.is-parent {justify-content: center}
 .tile.is-child {
   display: flex;
   margin: 1.25rem !important;

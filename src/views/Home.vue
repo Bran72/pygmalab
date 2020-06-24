@@ -100,17 +100,7 @@
         <NewProject class="box-sh-inline is-vertical" />
       </div>
       <div class="tile is-parent">
-        <article class="tile box-sh-outline is-child jc-center">
-          <div class="content">
-            <Calendar title-position="left" :attributes="attrs" />
-            <div class="subtitle is-6">Evènements à venir</div>
-            <ul>
-              <li class="event box-sh-outline">Toto</li>
-              <li class="event box-sh-outline">Toto</li>
-              <li class="event box-sh-outline">Toto</li>
-            </ul>
-          </div>
-        </article>
+        <Calendar class="box-sh-outline jc-center" />
       </div>
     </div>
   </div>
@@ -118,13 +108,12 @@
 
 <script>
 import NewProject from '../components/Cards/NewProject'
-import { Calendar } from 'v-calendar'
+import Calendar from '../components/Cards/Calendar'
 
 export default {
   name: 'Home',
   components: {
-    NewProject,
-    Calendar
+    NewProject, Calendar
   },
   data () {
     return {
@@ -149,23 +138,4 @@ export default {
   .mr-075 {margin-right: .75rem !important}
   .ml-075 {margin-left: .75rem !important}
   .mb-075 {margin-bottom: .75rem !important}
-
-  .vc-container {
-    border: none;
-  }
-  .subtitle {
-    text-align: left;
-  }
-  ul {
-    margin: 0!important;
-    .event {
-      margin: 1rem 0;
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 50px;
-      list-style: none
-    }
-  }
 </style>
