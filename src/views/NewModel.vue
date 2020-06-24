@@ -7,9 +7,9 @@
       <div class="form_new_timeline">
         <div class="timeline">
           <div class="timeline_title">
-            <p><a @click="step = 0" :class="{'isActive': step === 0}">Informations</a></p>
-            <p><a @click="step = 1" :class="{'isActive': step === 1}">Fichiers</a></p>
-            <p><a @click="step = 2" :class="{'isActive': step === 2}">Envoi</a></p>
+            <p><a @click="step = 0" :class="{'isActive': step === 0, 'isNotDisabled': step === 1}">Informations</a></p>
+            <p><a @click="step = 1" :class="{'isActive': step === 1, 'isNotDisabled': step !== 2}">Fichiers</a></p>
+            <p><a @click="step = 2" :class="{'isActive': step === 2, 'isDisabled': isDisabled}">Envoi</a></p>
           </div>
           <div :class="['step-'+step, 'timeline_bar']"></div>
         </div>
@@ -68,7 +68,7 @@
             </form>
           </div>
           <div class="form_right">
-            <div class="form_inline">
+            <div class="form_inline form_dim_section">
               <b-field label="Hauteur*">
                 <b-input
                         type="number"
@@ -78,44 +78,106 @@
               </b-field>
               <b-field label="Largeur*">
                 <b-input
-                        type="text"
+                        type="number"
                         v-model="form_data.dimensions.y"
                         required
                         rounded></b-input>
               </b-field>
               <b-field label="Profondeur*">
                 <b-input
-                        type="text"
+                        type="number"
                         v-model="form_data.dimensions.z"
                         required
                         rounded></b-input>
               </b-field>
             </div>
-            <b-field label="Date de rendu souhaitée*">
-              <b-datepicker
-                      v-model="form_data.description"
-                      placeholder="Choisir une date..."
-                      icon="calendar-today"
-                      position="is-top-right"
-                      trap-focus>
-              </b-datepicker>
-            </b-field>
-            <b-field label="Matériaux">
+            <b-field label="Matériaux" class="material">
               <b-taginput
                   v-model="form_data.materials"
                   ellipsis
+                  type="is-info"
                   icon="label"
                   placeholder="Ajouter des matériaux">
               </b-taginput>
             </b-field>
-            <p class="content"><b>Tags:</b> {{ form_data.materials }}</p>
+            <b-field label="Date de rendu souhaitée*">
+              <b-datepicker
+                      v-model="form_data.date"
+                      placeholder="Choisir une date..."
+                      icon="calendar-today"
+                      position="is-top-right"
+                      :min-date="minDate"
+                      trap-focus>
+              </b-datepicker>
+            </b-field>
           </div>
         </div>
         <div class="form_bottom">
-          <b-button @click="login">Se connecter</b-button>
+          <b-button type="is-primary" @click="confirmStep">Suivant</b-button>
+        </div>
+      </div>
+      <div v-else-if="step === 1" class="form_content form_content_files">
+        <div class="form_top">
+          <template>
+            <section>
+              <b-field>
+                <b-upload
+                  v-model="form_data.dropFiles"
+                  multiple
+                  drag-drop>
+                  <section class="section">
+                    <div class="content has-text-centered">
+                      <p>
+                        <b-icon
+                          icon="upload"
+                          size="is-large">
+                        </b-icon>
+                      </p>
+                      <p>Glissez / déposez vos fichiers ici <br />
+                        <span>La qualité de vos fichiers sera examinée</span>
+                      </p>
+                    </div>
+                  </section>
+                </b-upload>
+              </b-field>
+            </section>
+          </template>
+        </div>
+        <div class="form_bottom">
+          <div class="tags">
+            <span
+                v-for="(file, index) in form_data.dropFiles"
+                :key="index"
+                class="tag is-primary" >
+                {{file.name}}
+                <button
+                  class="delete is-small"
+                  type="button"
+                  @click="deleteDropFile(index)"></button>
+            </span>
+          </div>
+          <b-button type="is-primary" @click="confirmStep('confirm')">Valider la demande</b-button>
+        </div>
+      </div>
+      <div v-else class="form_confirmation">
+        <div class="form_msg_thx">
+          <p>Merci de votre confiance !</p>
+        </div>
+        <div class="form_msg_content">
+          <p class="was_send">Votre projet à été envoyé</p><br />
+          <p class="come_back">Nous reviendrons vers vous dans les plus brefs délais</p>
+          <p class="sending">Vos fichiers sont en cours d'envoi / envoyés</p>
+          <i class="mdi mdi-check-circle"></i>
         </div>
       </div>
     </div>
+    <b-message v-if="isSubmitted" title="Success" type="is-success" auto-close :duration=4000>
+      Mise en ligne de vos pièces jointes
+      <p class="progress_upload">
+        <span class="progress_bar_coundown">{{countdown}}%</span>
+        <span class="progress_upload_value" :style="{width: countdown + '%'}"></span>
+      </p>
+    </b-message>
   </div>
 </template>
 
@@ -127,7 +189,11 @@
     data () {
       return {
         step: 0,
+        minDate: new Date(),
         materials: [],
+        countdown: 0,
+        isSubmitted: false,
+        isDisabled: false,
 
         form_data: {
           name: '',
@@ -139,7 +205,10 @@
             y: 0,
             z: 0
           },
-          materials: []
+          materials: [],
+          date: null,
+
+          dropFiles: [],
         }
       }
     },
@@ -149,7 +218,40 @@
       }),
     },
     methods: {
-      login: () => {
+      confirmStep: function (action = '') {
+        if(action === 'confirm') {
+          this.$buefy.dialog.confirm({
+            message: 'Êtes-vous certain de vouloir soumettre votre demande ?',
+            type: 'is-warning',
+            onConfirm: () => {
+              this.countDownTimer()
+              this.step += 1
+              this.isDisabled = true
+              this.isSubmitted = true
+            }
+          })
+
+          setTimeout(() => {
+            this.$buefy.toast.open({
+              message: 'Votre demande a bien été envoyée !',
+              type: 'is-success'
+            });
+          }, 6000)
+        } else {
+          this.step += 1
+          if(this.step === 2) this.isDisabled = true
+        }
+      },
+      deleteDropFile(index) {
+        this.form_data.dropFiles.splice(index, 1)
+      },
+      countDownTimer() {
+        if(this.countdown < 100) {
+          setTimeout(() => {
+            this.countdown++
+            this.countDownTimer()
+          }, 30)
+        }
       }
     }
   }
@@ -170,6 +272,7 @@
           font-weight: bold;
           color: #D6D8DD;
           transition: color .75s ease-in-out;
+          pointer-events: none;
 
           &.isActive {
             color: #69F2A9;
@@ -212,7 +315,8 @@
       align-items: flex-start;
       flex: 1;
       height: 100%;
-      min-height: 620px;
+      //min-height: 620px;
+      min-height: 700px;
       background-color: $pygmaLabPurple;
       box-shadow: -28px -28px 50px #FFFFFF, 28px 28px 50px #D1D9E6;
       border-radius: 40px;
@@ -230,6 +334,7 @@
         flex: 1;
         width: 100%;
         text-align: left;
+        padding: 0 8%;
 
         h2 {
           font-size: 1.25rem;
@@ -239,12 +344,14 @@
 
         .form_top {
           display: flex;
-          justify-content: flex-start;
+          //justify-content: flex-start;
+          justify-content: center;
           > div {
             flex-basis: 50%;
             max-width: 640px;
-            min-width: 480px;
-            padding-right: 10%;
+            min-width: 280px;
+            &:first-child {padding-right: 5%;}
+            &:last-child {padding-left: 5%;}
           }
 
           .form_inline {
@@ -256,8 +363,51 @@
         }
 
         .form_bottom {
-          margin-top: 2rem;
+          //margin-top: 2rem;
           text-align: right;
+        }
+
+        &.form_content_files {
+          flex: 12;
+          display: flex;
+          flex-direction: column;
+
+          .upload {width: 100%}
+          section {width: 80%}
+          section.section {width: 100%}
+
+          > div:not(.form_bottom) {
+            flex: 1;
+            margin-top: 4rem;
+          }
+          > div.form_bottom {
+            .tags {margin-bottom: 3rem}
+          }
+        }
+      }
+
+      > .form_confirmation {
+        flex: 20;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 4rem;
+
+        .form_msg_thx {
+          flex: 2
+        }
+        .form_msg_content {
+          flex: 3;
+          .was_send {font-size: 3rem; font-weight: bold}
+          .come_back {font-size: 1.75rem}
+          .sending {font-size: .85rem; font-style: italic}
+        }
+
+        i {
+          font-size: 8rem;
+          color: #52D484;
         }
       }
     }
@@ -267,6 +417,15 @@
       height: 100%;
       padding-bottom: 5%;
     }
+
+    .message {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      max-width: 50%;
+    }
+
+    .isNotDisabled {pointer-events: auto !important}
   }
 </style>
 
@@ -299,7 +458,80 @@
     .form_inline {
       > div:not(:last-child) {margin-right: 2rem}
     }
+    .form_dim_section {
+      > div {max-width: 120px}
+    }
 
-    .select {margin-bottom: 1rem}
+    .select {margin-bottom: 1rem; min-width: 150px}
+
+    .material > div {margin-bottom: 1.75rem}
+
+    .upload-draggable {
+      width: 100%;
+      .content {
+        display: flex;
+        flex-direction: column;
+
+        p > span {
+          font-size: .75rem;
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  .progress_upload {
+    position: relative;
+    width: 360px;
+    height: 16px;
+    background: #DBDBDB;
+    margin-top: 12px;
+    border-radius: 40px;
+
+    > span {
+      &.progress_upload_value {
+        position: absolute;
+        width: 80%;
+        top: 0;
+        left: 0;
+        height: 16px;
+        border-radius: 40px;
+        background: #52D484;
+      }
+      &.progress_bar_coundown {
+        position: absolute;
+        top: 0;
+        left: 45%;
+        font-size: 12px;
+        font-weight: bold;
+        color: #fff;
+        z-index: 1;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .form_newmodel {
+      .form_dim_section {
+        > div {
+          max-width: 110px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    .form_newmodel {
+      > .form_content {
+        margin-top: 2rem;
+        padding: 0 2rem !important;
+      }
+      .form_inline {flex-wrap: wrap}
+      .form_dim_section {
+        > div {
+          max-width: 80px;
+        }
+      }
+    }
   }
 </style>
