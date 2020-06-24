@@ -5,7 +5,7 @@ const models = [
         sku: '123456',
         category: {
             name: 'Multimédia',
-            imgUrl: '@/assets/icons/categories/multimedia.svg',
+            imgUrl: 'multimedia.svg',
         },
         details: {
             fr: 'Nouvel iPhone d\'Apple',
@@ -30,8 +30,11 @@ const models = [
             dsmax: ['link1', 'link2']
         },
         clientId: 4,
-        status: 'en-attente',
-        freelanceId: 3,
+        status: {
+            name: 'En cours',
+            imgUrl: 'encours.svg'
+        },
+        freelanceId: null,
         dateCreation: new Date('03/06/2020'),
         dateDeadline: new Date('30/06/2020')
 
@@ -42,7 +45,7 @@ const models = [
         sku: '123456',
         category: {
             name: 'Multimédia',
-            imgUrl: '@/assets/icons/categories/multimedia.svg',
+            imgUrl: 'multimedia.svg',
         },
         details: {
             fr: 'Nouvelle Apple Watch d\'Apple',
@@ -67,7 +70,10 @@ const models = [
             dsmax: ['link1', 'link2']
         },
         clientId: 4,
-        status: 'en-cours',
+        status: {
+            name: 'En cours',
+            imgUrl: 'encours.svg'
+        },
         freelanceId: 3,
         dateCreation: new Date('22/04/2020'),
         dateDeadline: new Date('28/06/2020')
@@ -78,7 +84,7 @@ const models = [
         sku: '123456',
         category: {
             name: 'Mobilier',
-            imgUrl: '@/assets/icons/categories/mobilier.svg',
+            imgUrl: 'mobilier.svg',
         },
         details: {
             fr: 'Table de jardin exterieur en chêne, avec 6 chaises',
@@ -103,7 +109,10 @@ const models = [
             dsmax: ['link1', 'link2']
         },
         clientId: 4,
-        status: 'en-cours',
+        status: {
+            name: 'En cours',
+            imgUrl: 'encours.svg'
+        },
         freelanceId: 3,
         dateCreation: new Date('08/06/2020'),
         dateDeadline: new Date('29/06/2020')

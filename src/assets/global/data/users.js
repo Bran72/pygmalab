@@ -18,7 +18,7 @@ const users = [
     {
         id: 3,
         name: 'Gérard Dupont',
-        email: 'gégé@gmail.com',
+        email: 'gege',
         imgUrl: 'http://placehold.it/40x40',
         password: 'gege',
         role: 'Freelance'

@@ -38,7 +38,7 @@ export default new Vuex.Store({
     fetchUser({ commit }, user) {
       commit("SET_USER", user);
     },
-    fetchMModels({ commit }, models) {
+    fetchModels({ commit }, models) {
       commit("SET_MODELS", models);
     }
   },

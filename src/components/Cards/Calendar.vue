@@ -3,10 +3,19 @@
         <div class="content">
             <Calendar title-position="left" :attributes="attrs" />
             <div class="subtitle is-6">Evènements à venir</div>
-            <ul>
-                <li class="event box-sh-outline-small">Toto</li>
-                <li class="event box-sh-outline-small">Toto</li>
-                <li class="event box-sh-outline-small">Toto</li>
+            <ul v-for="model in models" :key="model.id">
+                <li v-if="model.freelanceId === user.id" class="event box-sh-outline-small">
+                    <div class="modelName">
+                        <img :src="'/icons/categories/' + model.category.imgUrl" alt="">
+                        <p>{{ model.nom }}</p>
+                    </div>
+                    <div class="modelStatus">
+                        <p>{{ model.status.name }}</p>
+                    </div>
+                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.590088 11.8545L5.17009 6.91464L0.590088 1.97479L2.00009 0.457321L8.00009 6.91464L2.00009 13.372L0.590088 11.8545Z" fill="black"/>
+                    </svg>
+                </li>
             </ul>
         </div>
     </article>
@@ -19,7 +28,8 @@ import { mapGetters } from "vuex";
 export default {
     computed: {
         ...mapGetters({
-            models: 'models'
+            models: 'models',
+            user: 'user'
         })
     },
     components: {
@@ -38,7 +48,7 @@ export default {
                 },
             ]
         }
-    },
+    }
 }
 </script>
 
@@ -70,7 +80,19 @@ export default {
             align-items: center;
             width: 100%;
             height: 50px;
-            list-style: none
+            list-style: none;
+            div {
+                display: flex;
+                p {
+                    font-size: 12px;
+                }
+            }
+            .modelName {
+                flex-grow: 1;
+            }
+            svg {
+                margin-left: 1rem;
+            }
         }
     }
 
