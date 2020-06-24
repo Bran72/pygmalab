@@ -4,7 +4,10 @@
             <div class="modelteaser_info">
                 <img :src="'/icons/categories/' + data.category.imgUrl" alt="">
                 <div class="modelteaser_name"><b>{{ data.nom }}</b></div>
-                <div class="modelteaser_state"></div>
+            </div>
+            <div class="modelteaser_state">
+                <img :src="'/icons/status/' + data.status.imgUrl" alt="">
+                <p>{{ data.status.name }}</p>
             </div>
             <div class="modelteaser_link">
                 <img src="@/assets/icons/arrow_right.svg" alt="Voir le modèle">
@@ -39,14 +42,27 @@
         border-radius: 100px;
 
         .modelteaser_info {
+            flex-basis: 40%;
             display: flex;
             align-items: center;
+            min-width: fit-content;
+            text-align: left;
 
             img {
                 margin-right: 2rem;
             }
 
-            .modelteaser_name {font-size: 1.25rem}
+            .modelteaser_name {
+                font-size: 1.25rem;
+            }
+        }
+
+
+        .modelteaser_state {
+            display: flex;
+            align-items: center;
+            flex-basis: 20%;
+            img {margin-right: 1rem}
         }
 
         .modelteaser_link {
