@@ -6,22 +6,22 @@
         <div class="offers_body">
             <div class="offers_search">
                 <b-field>
-                    <b-input placeholder="Essayez “Animaux”, “Nature”, “Mobilier”..."
+                    <b-input placeholder="Essayez “Mobilier”, “Métal”, “Véhicules”..."
                              v-model="filters.search"
                              type="search"
                              icon="magnify"
-                             icon-clickable
-                             @icon-click="searchIconClick" >
+                             icon-clickable>
                     </b-input>
                 </b-field>
             </div>
             <div class="offers_filters">
                 <div class="offers_categ">
-                    <div v-for="(category, index) in filters.categories" :key="index">
+                    <div v-for="(category, index) in categories[0]" :key="index">
                         <b-button
+                                :class="{'isActive': filters.categories.includes(category.name)}"
                                 type="is-light"
                                 rounded
-                                @click="selectCategory(category.name)">
+                                @click="toggleCategory(category.name)">
                             {{ category.name }}
                         </b-button>
                     </div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="offers_models">
-                <div v-for="model in data_models" :key="model.id" class="model_offer_card">
+                <div v-for="(model, index) in copyModels" :key="model.id" class="model_offer_card">
                     <div v-if="model.dateCreation === formatTodayDate()" class="badge_new">New</div>
                     <div class="model_offer_body">
                         <div class="model_category" @click="openModel(model)">
@@ -54,7 +54,7 @@
                             <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.88659 16.6603L8.88587 16.6596C6.30081 14.3155 4.19567 12.4057 2.73078 10.6147C1.27162 8.83074 0.5 7.22576 0.5 5.5C0.5 2.69614 2.69614 0.5 5.5 0.5C7.08861 0.5 8.62112 1.24197 9.61932 2.41417L10 2.8612L10.3807 2.41417C11.3789 1.24197 12.9114 0.5 14.5 0.5C17.3039 0.5 19.5 2.69614 19.5 5.5C19.5 7.22577 18.7284 8.83077 17.2691 10.6161C15.8065 12.4055 13.7058 14.3144 11.1265 16.6583L11.1148 16.669L11.1137 16.67L10.0013 17.675L8.88659 16.6603Z" stroke="black"/>
                             </svg>
-                            <div class="acceptButton" @click="acceptModel(model.id)">J'accepte</div>
+                            <div class="acceptButton" @click="acceptModel(model.id, index)">J'accepte</div>
                             <div class="price">30€</div>
                         </div>
                     </div>
@@ -67,16 +67,16 @@
 <script>
     import { mapGetters } from 'vuex'
     import store from '../store'
+    // import moment from 'moment'
 
     export default {
         name: 'Offers',
         data () {
             return {
-                data_models: null,
+                copyModels: null,
                 filters: {
                     search: '',
                     categories: [],
-                    selected_categories: [],
                     sort: 'ASC'
                 }
             }
@@ -89,6 +89,17 @@
             })
         },
         methods: {
+            toggleCategory(name) {
+                if (this.filters.categories.includes(name)) {
+                    const index = this.filters.categories.indexOf(name);
+                    if (index !== -1) {
+                        this.filters.categories.splice(index, 1);
+                    }
+                }
+                else {
+                    this.filters.categories.push(name)
+                }
+            },
             formatTodayDate() {
                 let today = new Date();
                 let dd = today.getDate();
@@ -103,22 +114,7 @@
 
                 today = dd+'/'+mm+'/'+yyyy;
 
-                console.log(today.toString())
                 return today.toString();
-            },
-            searchIconClick() {
-                alert('You wanna make a search ?')
-            },
-            selectCategory(name) {
-                console.log(this.filters.selected_categories)
-                console.log(name)
-
-                if(this.filters.selected_categories.includes(name)) {
-                    const index = this.filters.selected_categories.indexOf(name);
-                    if (index !== -1) name.splice(index, 1);
-                }
-                else
-                    this.filters.selected_categories = this.filters.selected_categories.push(name)
             },
             openModel (model) {
                 this.$router.push({name:'Modele', params:{model: model, id: model.id}})
@@ -134,12 +130,32 @@
                 })
             }
         },
-        beforeMount () {
-            this.filters.categories = this.categories[0]
-            this.data_models = this.models
-
-            console.log(this.filters.selected_categories)
-
+        watch: {
+            'filters.categories'() {
+                this.copyModels = this.models.filter(model => {
+                    return this.filters.categories.includes(model.category.name) && (model.nom.toLowerCase().includes(this.filters.search.toLowerCase()) || model.details.description.toLowerCase().includes(this.filters.search.toLowerCase()))
+                })
+            },
+            'filters.search'() {
+                this.copyModels = this.models.filter(model => {
+                    return this.filters.categories.includes(model.category.name) && (model.nom.toLowerCase().includes(this.filters.search.toLowerCase()) || model.details.description.toLowerCase().includes(this.filters.search.toLowerCase()))
+                })
+            },
+            'filters.sort'(val) {
+                if (val === 'ASC') {
+                    // MARCHE Pô
+                    // this.copyModels = this.copyModels.sort((a,b) => new moment(a.dateCreation).format('DD/MM/YYYY') - new moment(b.dateCreation).format('DD/MM/YYYY'))
+                } else {
+                    // MARCHE Pô
+                    // this.copyModels = this.copyModels.sort((a,b) => new moment(b.dateCreation).format('DD/MM/YYYY') - new moment(a.dateCreation).format('DD/MM/YYYY'))
+                }
+            }
+        },
+        mounted() {
+            this.copyModels = this.models
+            this.categories[0].forEach(category => {
+                this.filters.categories.push(category.name)
+            })
         }
     }
 </script>

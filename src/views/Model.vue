@@ -56,6 +56,7 @@
                         <div :class="['step-'+step2, 'timeline_bar', 'subtimeline_bar']"></div>
                     </div>
                 </div>
+                <model-gltf src="/models/gltf/chair/scene.gltf"></model-gltf>
             </div>
         </div>
     </section>
@@ -64,6 +65,7 @@
 <script>
     import { mapGetters } from 'vuex'
     import store from "../store";
+    import { ModelGltf } from 'vue-3d-model'
 
     export default {
         props: {
@@ -73,6 +75,9 @@
             ...mapGetters({
                 user: 'user'
             })
+        },
+        components: {
+            ModelGltf
         },
         data () {
             return {

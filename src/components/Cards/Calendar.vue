@@ -96,8 +96,6 @@ export default {
 
     ul {
         margin: 0 !important;
-        max-height: 30vh;
-        overflow-y: scroll;
         li {
             list-style: none;
             .event {
