@@ -3,7 +3,7 @@
         <div class="header_home">
             <div>
                 <div class="logo">
-                    <router-link to="/dashboard">
+                    <router-link to="/login">
                         <img alt="PygmaLab Logo" src="../assets/logo.svg">
                     </router-link>
                 </div>
@@ -48,6 +48,10 @@
                         <b-field label="Mot de passe">
                             <b-input type="password" v-model="password" placeholder="mot de passe..." @keyup.native.enter="login"></b-input>
                         </b-field>
+
+                        <p class="forgot_pswd">
+                            Mot de passe oublié ?
+                        </p>
                     </div>
                     <div class="form_submit">
                         <div class="freelance_btn already_account">
@@ -242,6 +246,17 @@
                        border: .5px solid dimgrey;
                     }
                 }
+            }
+
+
+            .forgot_pswd {
+                margin-top: -2rem;
+                text-align: right;
+                cursor: pointer;
+                font-size: .75rem;
+                text-align: right;
+                color: #6245E7;
+                text-decoration: underline;
             }
         }
 

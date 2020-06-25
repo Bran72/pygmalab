@@ -22,22 +22,22 @@ const models = [
         },
         photos: ['link1', 'link2'],
         files: {
-            gtlf: ['link1', 'link2'],
-            photos: ['link1', 'link2'],
-            android: ['link1', 'link2'],
-            ios: ['link1', 'link2'],
-            rendered: ['link1', 'link2'],
-            igs: ['link1', 'link2'],
-            dsmax: ['link1', 'link2']
+            gtlf: [{name: 'export-3d_rendu_iphone12_2020.gtlf', size: 20475484}],
+            photos: [{name: 'iphone12_3d-rendered.png', size: 514}, {name: 'iphone12_3d-rendered(2).png', size: 1034}],
+            android: [{name: 'android_src.appbundle', size: 2014}, {name: 'android_src.appbundle', size: 2048}],
+            ios: [{name: 'ios_src.xcodeproj', size: 204}, {name: 'ios_src2.xcodeproj', size: 200}],
+            rendered: [],
+            igs: [],
+            dsmax: []
         },
-        clientId: 3,
+        clientId: 4,
         status: {
-            name: 'En attente',
-            class: 'enattente',
-            imgUrl: 'enattente.svg'
+            name: 'En cours',
+            class: 'encours',
+            imgUrl: 'encours.svg'
         },
-        freelanceId: null,
-        dateCreation: '25/06/2020',
+        freelanceId: 3,
+        dateCreation: '26/06/2020',
         dateDeadline: '30/07/2020'
 
     },
@@ -64,7 +64,7 @@ const models = [
         },
         photos: ['link1', 'link2'],
         files: {
-            gtlf: ['link1', 'link2'],
+            gtlf: [],
             photos: ['link1', 'link2'],
             android: ['link1', 'link2'],
             ios: ['link1', 'link2'],
@@ -72,14 +72,14 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 3,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
             imgUrl: 'enattente.svg'
         },
         freelanceId: null,
-        dateCreation: '25/06/2020',
+        dateCreation: '26/06/2020',
         dateDeadline: '08/08/2020'
 
     },
@@ -114,13 +114,13 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 3,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
             imgUrl: 'enattente.svg'
         },
-        freelanceId: null,
+        freelanceId: 3,
         dateCreation: '30/05/2020',
         dateDeadline: '29/07/2020'
     },
@@ -196,7 +196,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -238,7 +238,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -279,7 +279,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 3,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -361,7 +361,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -402,7 +402,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -443,7 +443,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',
@@ -484,7 +484,7 @@ const models = [
             igs: ['link1', 'link2'],
             dsmax: ['link1', 'link2']
         },
-        clientId: 4,
+        clientId: 5,
         status: {
             name: 'En attente',
             class: 'enattente',

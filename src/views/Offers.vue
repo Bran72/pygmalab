@@ -43,12 +43,12 @@
                             <img :src="'/icons/categories/' + model.category.imgUrl" :alt="model.nom">
                             <p class="model_categ_name">{{ model.category.name }}</p>
                         </div>
-                        <div class="model_content">
+                        <div class="model_content" @click="openModel(model)">
                             <p class="model_name">{{ model.nom }}</p>
                             <p v-if="model.dateCreation === formatTodayDate()" class="model_startDate"><i>Publié aujourd'hui</i></p>
-                            <p v-else class="model_startDate"><i>Publié il y a X jours</i></p>
+                            <p v-else class="model_startDate"><i>Publié il y a {{index + 3}} jours</i></p>
                             <hr />
-                            <p class="model_endDate">Dans X jours</p>
+                            <p class="model_endDate">Dans {{ index + 2 }} jours</p>
                         </div>
                         <div class="model_actions">
                             <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">

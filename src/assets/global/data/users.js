@@ -18,7 +18,7 @@ const users = [
     {
         id: 3,
         name: 'Gérard Dupont',
-        email: 'freelance',
+        email: 'freelance@hilo.com',
         imgUrl: 'http://placehold.it/40x40',
         password: 'freelance',
         role: 'Freelance'
@@ -26,7 +26,7 @@ const users = [
     {
         id: 4,
         name: 'Anthony Gault',
-        email: 'client',
+        email: 'client@hilo.com',
         imgUrl: 'http://placehold.it/40x40',
         password: 'client',
         role: 'Client'
@@ -34,9 +34,9 @@ const users = [
     {
         id: 5,
         name: 'admin',
-        email: 'admin',
+        email: 'client2@hilo.com',
         imgUrl: 'http://placehold.it/40x40',
-        password: 'admin',
+        password: 'client2',
         role: 'Admin'
     }
 ];
