@@ -37,7 +37,7 @@ const models = [
             imgUrl: 'enattente.svg'
         },
         freelanceId: null,
-        dateCreation: '23/06/2020',
+        dateCreation: '25/06/2020',
         dateDeadline: '30/07/2020'
 
     },
@@ -79,7 +79,7 @@ const models = [
             imgUrl: 'enattente.svg'
         },
         freelanceId: null,
-        dateCreation: '21/06/2020',
+        dateCreation: '25/06/2020',
         dateDeadline: '08/08/2020'
 
     },
@@ -373,14 +373,14 @@ const models = [
     },
     {
         id: 10,
-        nom: 'VTT nouvelle génération',
+        nom: 'VTT',
         sku: '12TRE4',
         category: {
             name: 'Transports',
             imgUrl: 'transport.svg',
         },
         details: {
-            fr: 'VTT',
+            fr: 'VTT nouvelle génération',
             en: '',
             description: 'Nous souhaitons un rendu 3D de notre nouveau VTT pour mettre dans un catalogue.',
             dimensions: {
@@ -409,7 +409,7 @@ const models = [
             imgUrl: 'enattente.svg'
         },
         freelanceId: null,
-        dateCreation: '16/06/2020',
+        dateCreation: '25/06/2020',
         dateDeadline: '18/07/2020'
     },
     {
@@ -455,14 +455,14 @@ const models = [
     },
     {
         id: 12,
-        nom: 'Ruche à abeilles 3D',
+        nom: 'Ruche à abeilles',
         sku: '12TRE4',
         category: {
             name: 'Nature',
             imgUrl: 'nature.svg',
         },
         details: {
-            fr: 'Ruche à abeilles',
+            fr: 'Ruche à abeilles 3D',
             en: '',
             description: "Soucieux de nos petites abeilles, je souhaite faire réaliser un modèle 3D d'une ruche, qui sera ensuite imprimée en 3D !",
             dimensions: {
