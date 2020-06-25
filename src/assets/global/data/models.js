@@ -10,6 +10,7 @@ const models = [
         details: {
             fr: 'Nouvel iPhone d\'Apple',
             en: 'New Apple\'s iPhone',
+            description: 'Un téléphone de la marque Apple modélisé avec une coque en argent.',
             dimensions: {
                 depth: 2.0, //mm
                 width: 15.0,

@@ -15,7 +15,7 @@
                     <p class="dateCreation">Créé le : {{ model.dateCreation }}</p>
                 </div>
             </div>
-            <div v-if="model.status.name === 'En attente'">
+            <div v-if="model.status.name === 'En attente' && user.role === 'Freelance'">
                 <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.88659 16.6603L8.88587 16.6596C6.30081 14.3155 4.19567 12.4057 2.73078 10.6147C1.27162 8.83074 0.5 7.22576 0.5 5.5C0.5 2.69614 2.69614 0.5 5.5 0.5C7.08861 0.5 8.62112 1.24197 9.61932 2.41417L10 2.8612L10.3807 2.41417C11.3789 1.24197 12.9114 0.5 14.5 0.5C17.3039 0.5 19.5 2.69614 19.5 5.5C19.5 7.22577 18.7284 8.83077 17.2691 10.6161C15.8065 12.4055 13.7058 14.3144 11.1265 16.6583L11.1148 16.669L11.1137 16.67L10.0013 17.675L8.88659 16.6603Z" stroke="black"/>
                 </svg>
@@ -35,7 +35,7 @@
         <div class="tile is-parent">
             <div class="tile is-child" :class="{'box-sh-inline': step === 0, 'box-sh-outline':  step !== 0}">
                 <h2 class="subtitle">Description du projet</h2>
-                <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid atque, doloribus et incidunt ipsa officia quasi reiciendis sapiente sint?</p>
+                <p class="description">{{ model.details.description }}</p>
                 <h2 class="subtitle">Dimensions</h2>
                 <p class="dimension"><span>Longueur:</span><span>{{ model.details.dimensions.width}} mm</span></p>
                 <p class="dimension"><span>Largeur: </span><span>{{ model.details.dimensions.height}} mm</span></p>

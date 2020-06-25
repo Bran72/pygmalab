@@ -1,19 +1,15 @@
 const categories = [
     {
-        name: 'Animaux',
-        imgUrl: 'animal.svg'
-    },
-    {
         name: 'Nature',
         imgUrl: 'nature.svg'
     },
     {
-        name: 'Vehicule',
-        imgUrl: 'vehicule.svg'
+        name: 'Transports',
+        imgUrl: 'transport.svg'
     },
     {
-        name: 'Informatique',
-        imgUrl: 'informatique.svg'
+        name: 'Technologie et Informatique',
+        imgUrl: 'technologie.svg'
     },
     {
         name: 'Multimédia',
@@ -22,10 +18,6 @@ const categories = [
     {
         name: 'Mobilier',
         imgUrl: 'mobilier.svg'
-    },
-    {
-        name: 'Outillage',
-        imgUrl: 'outillage.svg'
     },
     {
         name: 'Autres',
