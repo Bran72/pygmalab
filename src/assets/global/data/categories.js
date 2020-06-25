@@ -20,6 +20,10 @@ const categories = [
         imgUrl: 'mobilier.svg'
     },
     {
+        name: 'Alimentaire',
+        imgUrl: 'alimentaire.svg'
+    },
+    {
         name: 'Autres',
         imgUrl: 'autres.svg'
     }

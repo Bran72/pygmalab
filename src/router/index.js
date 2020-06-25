@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Model from '../views/Model.vue'
+import Offers from '../views/Offers'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -32,12 +33,17 @@ Vue.use(Vuex)
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue')
   },
-    {
-      path: '/dashboard/modele/:id',
-      name: 'Modele',
-      component: Model,
-      props: true
-    },
+  {
+    path: '/dashboard/offres',
+    name: 'Offers',
+    component: Offers
+  },
+  {
+    path: '/dashboard/modele/:id',
+    name: 'Modele',
+    component: Model,
+    props: true
+  },
 ]
 
 const router = new VueRouter({

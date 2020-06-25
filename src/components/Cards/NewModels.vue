@@ -3,7 +3,7 @@
         <div class="content">
             <p class="title is-4 level-left">Les dernières demandes</p>
             <div v-if="user !== null" class="list_models">
-                <div v-for="model in models" :key="model.id">
+                <div v-for="model in models.slice(0, 4)" :key="model.id">
                     <NewModelsTeaser v-if="model.status.name === 'En attente' && user.role === 'Freelance'" :model="model" />
                 </div>
             </div>
