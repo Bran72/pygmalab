@@ -1,6 +1,6 @@
 <template>
-    <router-link to="/">
-        <div id="card_mymodelsteaser">
+    <div>
+        <div id="card_mymodelsteaser" @click="openModel(data)">
             <div class="modelteaser_info">
                 <img :src="'/icons/categories/' + data.category.imgUrl" alt="">
                 <div class="modelteaser_name"><b>{{ data.nom }}</b></div>
@@ -13,7 +13,7 @@
                 <img src="@/assets/icons/arrow_right.svg" alt="Voir le modèle">
             </div>
         </div>
-    </router-link>
+    </div>
 </template>
 
 <script>
@@ -23,7 +23,12 @@
             data: {
                 type: [Object, Array],
             },
-        }
+        },
+        methods: {
+            openModel (model) {
+                this.$router.push({name:'Modele', params:{model: model, id: model.id}})
+            }
+        },
     }
 </script>
 

@@ -179,7 +179,6 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    name: 'NewModel',
     data () {
       return {
         step: 0,

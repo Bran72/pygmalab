@@ -22,8 +22,18 @@
                 <div class="acceptButton">J'accepte</div>
             </div>
         </div>
+        <div class="form_new_timeline">
+            <div class="timeline">
+                <div class="timeline_title">
+                    <p><a @click="step = 0" :class="{'isActive': step === 0, 'isNotDisabled': step === 1}">Informations</a></p>
+                    <p><a @click="step = 1" :class="{'isActive': step === 1, 'isNotDisabled': step !== 2}">Fichiers</a></p>
+                    <p><a @click="step = 2" :class="{'isActive': step === 2, 'isDisabled': isDisabled}">Envoi</a></p>
+                </div>
+                <div :class="['step-'+step, 'timeline_bar']"></div>
+            </div>
+        </div>
         <div class="tile is-parent">
-            <div class="tile is-child box-sh-outline">
+            <div class="tile is-child" :class="{'box-sh-inline': step === 0, 'box-sh-outline':  step !== 0}">
                 <h2 class="subtitle">Description du projet</h2>
                 <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid atque, doloribus et incidunt ipsa officia quasi reiciendis sapiente sint?</p>
                 <h2 class="subtitle">Dimensions</h2>
@@ -31,8 +41,19 @@
                 <p class="dimension"><span>Largeur: </span><span>{{ model.details.dimensions.height}} mm</span></p>
                 <p class="dimension"><span>Profondeur: </span><span>{{ model.details.dimensions.depth}} mm</span></p>
             </div>
-            <div class="tile is-child box-sh-outline">
-                <h2 class="subtitle">Déposez des fichiers ici</h2>
+            <div class="tile is-child is-7" :class="{'box-sh-inline': step === 1, 'box-sh-outline':  step !== 1}">
+                <div class="form_new_timeline">
+                    <div class="timeline subtimeline">
+                        <div class="timeline_title">
+                            <p><a @click="step2 = 0" :class="{'isActive': step2 === 0}">Tous</a></p>
+                            <p><a @click="step2 = 1" :class="{'isActive': step2 === 1}">iOS</a></p>
+                            <p><a @click="step2 = 2" :class="{'isActive': step2 === 2}">Android</a></p>
+                            <p><a @click="step2 = 3" :class="{'isActive': step2 === 3}">Fichiers 3D</a></p>
+                            <p><a @click="step2 = 4" :class="{'isActive': step2 === 4}">Photos</a></p>
+                        </div>
+                        <div :class="['step-'+step2, 'timeline_bar', 'subtimeline_bar']"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -52,6 +73,8 @@
         },
         data () {
             return {
+                step: 0,
+                step2: 0,
                 role: 'client',
                 attrs: []
             }
@@ -102,6 +125,62 @@
                     color: white;
                 }
             }
+        }
+
+        .form_new_timeline {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .timeline {
+            width: 60%;
+            .timeline_title {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+                color: #D6D8DD;
+                > p {
+                    flex-basis: 33.333%;
+                    a {
+                        font-size: 1.25rem;
+                        font-weight: bold;
+                        color: #D6D8DD;
+                        transition: color .75s ease-in-out;
+                        // pointer-events: none;
+
+                        &.isActive {
+                            color: #69F2A9;
+                        }
+                    }
+                }
+            }
+            .timeline_bar {
+                width: 100%;
+                height: 5px;
+                background: #D6D8DD;
+                border-radius: 50px;
+                &:after {
+                    content: "";
+                    display: block;
+                    background: #69F2A9;
+                    width: 33.33%;
+                    height: 5px;
+                    border-radius: 50px;
+                    margin-left: 0;
+                    transition: margin-left .25s ease-in-out;
+                }
+                &.step-1:after {margin-left: 33.333%}
+                &.step-2:after {margin-left: 66.666%}
+            }
+            .subtimeline_bar {
+                &:after {
+                    width: 20% !important;
+                }
+            }
+        }
+        .subtimeline {
+            width: 100% !important;
         }
 
         .is-parent {
