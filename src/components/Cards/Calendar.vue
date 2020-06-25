@@ -56,7 +56,7 @@ export default {
     },
     methods: {
         openModel (model) {
-            this.$router.push({name:'Modele', params:{model: model}})
+            this.$router.push({name:'Modele', params:{model: model, id: model.id}})
         }
     },
     mounted() {

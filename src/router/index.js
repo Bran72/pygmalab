@@ -33,7 +33,7 @@ Vue.use(Vuex)
     component: () => import('../views/Dashboard.vue')
   },
     {
-      path: '/modele/:id',
+      path: '/dashboard/modele/:id',
       name: 'Modele',
       component: Model,
       props: true
