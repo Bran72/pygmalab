@@ -34,6 +34,13 @@ export default new Vuex.Store({
     SET_MODELS(state, value) {
       state.models = value;
     },
+    ADD_MODEL(state, value) {
+      state.models.push(value)
+    },
+    SET_FREELANCE(state, value) {
+      state.models.find(element => element.id === value.modelId).freelanceId = value.freelanceId;
+      state.models.find(element => element.id === value.modelId).status = { name: 'En cours', class: 'encours', imgUrl: 'encours.svg' }
+    },
     SET_CATEGORIES(state, value) {
       state.categories = value;
     }
@@ -47,6 +54,12 @@ export default new Vuex.Store({
     },
     fetchModels({ commit }, models) {
       commit("SET_MODELS", models);
+    },
+    addModel({ commit}, model) {
+      commit("ADD_MODEL", model);
+    },
+    setFreelance({ commit }, data) {
+      commit("SET_FREELANCE", data)
     },
     fetchCategories({ commit }, categories) {
       commit("SET_CATEGORIES", categories);

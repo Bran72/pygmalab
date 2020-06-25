@@ -1,11 +1,10 @@
 <template>
     <article id="card_mymodels" class="tile is-child">
         <div class="content">
-            <p class="title is-4 level-left">Modèles en cours ({{modelCounter}})</p>
+            <p class="title is-4 level-left">Les dernières demandes</p>
             <div v-if="user !== null" class="list_models">
                 <div v-for="model in models" :key="model.id">
-                    <MyModelsTeaser v-if="user.id === model.clientId && user.role === 'Client'" :data="model" />
-                    <MyModelsTeaser v-else-if="user.id === model.freelanceId && user.role === 'Freelance'" :data="model" />
+                    <NewModelsTeaser v-if="model.status.name === 'En attente' && user.role === 'Freelance'" :model="model" />
                 </div>
             </div>
             <div v-else>
@@ -17,12 +16,11 @@
 
 <script>
 import { mapGetters } from "vuex"
-import MyModelsTeaser from './MyModelsTeaser'
+import NewModelsTeaser from './NewModelsTeaser'
 
 export default {
-    name: 'MyModels',
     components: {
-      MyModelsTeaser
+      NewModelsTeaser
     },
     data () {
         return {
@@ -36,9 +34,13 @@ export default {
         }),
     },
     mounted () {
-        this.modelCounter = this.models.filter(model => {
-            return model.clientId === this.user.id && this.user.role === 'Client' || model.freelanceId === this.user.id && this.user.role === 'Freelance'
-        }).length
+        if(this?.models && this?.models.length !== 0 && this.user && this.user.id) {
+            this.models.map((model) => {
+                if(model.clientId === this.user.id)
+                    this.modelCounter += 1
+            })
+
+        }
     }
 }
 </script>

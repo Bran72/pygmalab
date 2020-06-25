@@ -42,13 +42,7 @@
 
 // Status
 .enattente {
-  color: yellow;
-}
-.valide {
-  color: lightgreen;
-}
-.refuse {
-  color: lightcoral;
+  color: $statusEnAttente;
 }
 .encours {
   color: $statutEnCours;
