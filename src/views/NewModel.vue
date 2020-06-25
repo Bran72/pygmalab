@@ -60,7 +60,7 @@
               <b-field label="Description">
                 <b-input
                         type="textarea"
-                        v-model="model.description"
+                        v-model="model.details.description"
                         placeholder="Décrivez-nous votre projet en quelques lignes : Description du modèle, type de modélisation, etc."
                         required
                         rounded></b-input>
@@ -72,21 +72,21 @@
               <b-field label="Hauteur*">
                 <b-input
                         type="number"
-                        v-model="model.details.dimensions.x"
+                        v-model="model.details.dimensions.width"
                         required
                         rounded></b-input>
               </b-field>
               <b-field label="Largeur*">
                 <b-input
                         type="number"
-                        v-model="model.details.dimensions.y"
+                        v-model="model.details.dimensions.height"
                         required
                         rounded></b-input>
               </b-field>
               <b-field label="Profondeur*">
                 <b-input
                         type="number"
-                        v-model="model.details.dimensions.z"
+                        v-model="model.details.dimensions.depth"
                         required
                         rounded></b-input>
               </b-field>
@@ -195,10 +195,11 @@
           category: null,
           customCategory: null,
           details: {
+            description: '',
             dimensions: {
-              x: 0,
-              y: 0,
-              z: 0
+              width: 0,
+              depth: 0,
+              height: 0
             },
             materials: [],
             scale: 1,
