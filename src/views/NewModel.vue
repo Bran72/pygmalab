@@ -222,8 +222,8 @@
           },
           clientId: null,
           freelanceId: null,
-          dateCreation: moment().format('dd/mm/yyyy'),
-          dateDeadline: '30/07/2020',
+          dateCreation: moment().format('DD/MM/YYYY'),
+          dateDeadline: null,
         }
       }
     },
@@ -247,7 +247,7 @@
 
               // Adding model to store
               this.model.clientId = this.user.id
-              this.model.dateDeadline = moment(this.model.dateDeadline).format('dd/mm/yyyy')
+              this.model.dateDeadline = moment(this.model.dateDeadline).format('DD/MM/YYYY')
               store.dispatch("addModel",  this.model);
             }
           })
