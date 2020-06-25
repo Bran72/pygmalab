@@ -5,7 +5,14 @@
     <section id="container">
       <div v-if="user !== null" class="overflow-trick" style="margin-left: 120px"></div>
       <div v-else class="overflow-trick"></div>
-      <router-view/>
+      <router-view @formSubmitted="isSubmitted" />
+      <b-message v-if="form_demande_submitted" title="Success" type="is-success" auto-close :duration=4000>
+        Mise en ligne de vos pièces jointes
+        <p class="progress_upload">
+          <span class="progress_bar_coundown">{{countdown}}%</span>
+          <span class="progress_upload_value" :style="{width: countdown + '%'}"></span>
+        </p>
+      </b-message>
     </section>
   </div>
 </template>
@@ -25,13 +32,32 @@
     },
     data () {
       return {
-        toto: 'toto'
+        toto: 'toto',
+        form_demande_submitted: false,
+        countdown: 0
       }
     },
     mounted() {
       if(this.user === null || !this.user?.id)
         this.$router.push('login')
       // console.log(this.$store.getters.test)
+    },
+    methods: {
+      isSubmitted (value) {
+        console.log('event to parent')
+        if(value === 'isSubmitted') {
+          this.form_demande_submitted = true
+          this.countDownTimer()
+        }
+      },
+      countDownTimer() {
+        if(this.countdown < 100) {
+          setTimeout(() => {
+            this.countdown++
+            this.countDownTimer()
+          }, 30)
+        }
+      }
     }
   }
 </script>
@@ -90,6 +116,13 @@
 
   #nav a.router-link-exact-active {
     color: #42b983;
+  }
+
+  .message {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    max-width: 50%;
   }
 }
 </style>

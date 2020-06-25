@@ -171,13 +171,7 @@
         </div>
       </div>
     </div>
-    <b-message v-if="isSubmitted" title="Success" type="is-success" auto-close :duration=4000>
-      Mise en ligne de vos pièces jointes
-      <p class="progress_upload">
-        <span class="progress_bar_coundown">{{countdown}}%</span>
-        <span class="progress_upload_value" :style="{width: countdown + '%'}"></span>
-      </p>
-    </b-message>
+
   </div>
 </template>
 
@@ -224,10 +218,10 @@
             message: 'Êtes-vous certain de vouloir soumettre votre demande ?',
             type: 'is-warning',
             onConfirm: () => {
-              this.countDownTimer()
               this.step += 1
               this.isDisabled = true
               this.isSubmitted = true
+              this.$emit('formSubmitted', 'isSubmitted')
             }
           })
 
@@ -244,14 +238,6 @@
       },
       deleteDropFile(index) {
         this.form_data.dropFiles.splice(index, 1)
-      },
-      countDownTimer() {
-        if(this.countdown < 100) {
-          setTimeout(() => {
-            this.countdown++
-            this.countDownTimer()
-          }, 30)
-        }
       }
     }
   }
