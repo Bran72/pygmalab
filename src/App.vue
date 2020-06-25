@@ -39,7 +39,7 @@
     },
     mounted() {
       if(this.user === null || !this.user?.id)
-        this.$router.push('login')
+        this.$router.push('/login')
       // console.log(this.$store.getters.test)
     },
     methods: {

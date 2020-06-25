@@ -20,7 +20,7 @@ Vue.use(Vuex)
     component: Home
   },
   {
-    path: '/new',
+    path: '/dashboard/new',
     name: 'New Model',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

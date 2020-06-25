@@ -18,9 +18,14 @@
                     </svg>
                 </router-link>
 <!--                <router-link to="/dashboard/projets">-->
-                <router-link to="/new">
+                <router-link v-if="user.role === 'Client'" to="/dashboard/new">
                     <svg width="29" height="29">
                         <path d="M26 16.1429H16.1429V26H12.8571V16.1429H3V12.8571H12.8571V3H16.1429V12.8571H26V16.1429Z" fill="#E6E9EF"/>
+                    </svg>
+                </router-link>
+                <router-link v-if="user.role === 'Freelance'" to="/dashboard/offres">
+                    <svg width="25" height="24">
+                        <path d="M22.1666 5.24996H17.3333V2.83329C17.3333 1.49204 16.2579 0.416626 14.9166 0.416626H10.0833C8.74204 0.416626 7.66663 1.49204 7.66663 2.83329V5.24996H2.83329C1.49204 5.24996 0.428709 6.32538 0.428709 7.66663L0.416626 20.9583C0.416626 22.2995 1.49204 23.375 2.83329 23.375H22.1666C23.5079 23.375 24.5833 22.2995 24.5833 20.9583V7.66663C24.5833 6.32538 23.5079 5.24996 22.1666 5.24996ZM14.9166 5.24996H10.0833V2.83329H14.9166V5.24996Z" fill="#D6D8DD"/>
                     </svg>
                 </router-link>
                 <router-link to="/dashboard/portefeuille">
@@ -40,12 +45,18 @@
 
 <script>
     import store from "../store";
+    import { mapGetters } from 'vuex'
 
     export default {
         data() {
             return {
                 isActive: true
             }
+        },
+        computed: {
+            ...mapGetters({
+                user: 'user'
+            })
         },
         methods: {
             logout () {
