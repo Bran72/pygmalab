@@ -22,7 +22,7 @@
               <b-field label="Nom*">
                 <b-input
                         type="text"
-                        v-model="form_data.name"
+                        v-model="model.nom"
                         placeholder="Le nom du modèle"
                         rounded
                         required
@@ -31,7 +31,7 @@
               <b-field label="SKU*">
                 <b-input
                         type="text"
-                        v-model="form_data.sku"
+                        v-model="model.sku"
                         placeholder="Le SKU est l'identifiant unique du modèle"
                         required
                         rounded></b-input>
@@ -39,19 +39,19 @@
               <div class="form_inline form_categ_section">
                 <b-field label="Catégorie*">
                   <b-select
-                    v-model="form_data.category"
+                    v-model="model.category"
                     placeholder="Choisir une catégorie"
                     expanded>
                     <option
                         v-for="(category, index) in categories[0]"
-                        :value="category.name"
+                        :value="category"
                         :key="index">{{ category.name }}</option>
                   </b-select>
                 </b-field>
-                <b-field v-if="form_data.category === 'Autres'" label="Autre catégorie">
+                <b-field v-if="model.category === 'Autres'" label="Autre catégorie">
                   <b-input
                           type="text"
-                          v-model="form_data.customCategory"
+                          v-model="model.customCategory"
                           placeholder="Votre catégorie"
                           required
                           rounded></b-input>
@@ -60,7 +60,7 @@
               <b-field label="Description">
                 <b-input
                         type="textarea"
-                        v-model="form_data.description"
+                        v-model="model.description"
                         placeholder="Décrivez-nous votre projet en quelques lignes : Description du modèle, type de modélisation, etc."
                         required
                         rounded></b-input>
@@ -72,28 +72,28 @@
               <b-field label="Hauteur*">
                 <b-input
                         type="number"
-                        v-model="form_data.dimensions.x"
+                        v-model="model.details.dimensions.x"
                         required
                         rounded></b-input>
               </b-field>
               <b-field label="Largeur*">
                 <b-input
                         type="number"
-                        v-model="form_data.dimensions.y"
+                        v-model="model.details.dimensions.y"
                         required
                         rounded></b-input>
               </b-field>
               <b-field label="Profondeur*">
                 <b-input
                         type="number"
-                        v-model="form_data.dimensions.z"
+                        v-model="model.details.dimensions.z"
                         required
                         rounded></b-input>
               </b-field>
             </div>
             <b-field label="Matériaux" class="material">
               <b-taginput
-                  v-model="form_data.materials"
+                  v-model="model.details.materials"
                   ellipsis
                   type="is-info"
                   icon="label"
@@ -102,7 +102,7 @@
             </b-field>
             <b-field label="Date de rendu souhaitée*">
               <b-datepicker
-                      v-model="form_data.date"
+                      v-model="model.dateDeadline"
                       placeholder="Choisir une date..."
                       icon="calendar-today"
                       position="is-top-right"
@@ -122,7 +122,7 @@
             <section>
               <b-field>
                 <b-upload
-                  v-model="form_data.dropFiles"
+                  v-model="model.files.gtlf"
                   multiple
                   drag-drop>
                   <section class="section">
@@ -146,7 +146,7 @@
         <div class="form_bottom">
           <div class="tags">
             <span
-                v-for="(file, index) in form_data.dropFiles"
+                v-for="(file, index) in model.files.gtlf"
                 :key="index"
                 class="tag is-primary" >
                 {{file.name}}
@@ -176,38 +176,60 @@
 </template>
 
 <script>
+  import moment from 'moment'
   import { mapGetters } from 'vuex'
+  import store from "../store";
 
   export default {
     data () {
       return {
         step: 0,
         minDate: new Date(),
-        materials: [],
-        countdown: 0,
         isSubmitted: false,
         isDisabled: false,
 
-        form_data: {
-          name: '',
+        model: {
+          id: Math.floor(Math.random() * Math.floor(1000000)),
+          nom: '',
           sku: '',
           category: null,
           customCategory: null,
-          dimensions: {
-            x: 0,
-            y: 0,
-            z: 0
+          details: {
+            dimensions: {
+              x: 0,
+              y: 0,
+              z: 0
+            },
+            materials: [],
+            scale: 1,
+            url: ''
           },
-          materials: [],
-          date: null,
-
-          dropFiles: [],
+          photos: ['link1', 'link2'],
+          files: {
+            gtlf: null,
+            photos: ['link1', 'link2'],
+            android: ['link1', 'link2'],
+            ios: ['link1', 'link2'],
+            rendered: ['link1', 'link2'],
+            igs: ['link1', 'link2'],
+            dsmax: ['link1', 'link2']
+          },
+          status: {
+            name: 'En attente',
+            class: 'enattente',
+            imgUrl: 'enattente.svg'
+          },
+          clientId: null,
+          freelanceId: null,
+          dateCreation: moment().format('dd/mm/yyyy'),
+          dateDeadline: '30/07/2020',
         }
       }
     },
     computed: {
       ...mapGetters({
-        categories: 'categories'
+        categories: 'categories',
+        user: 'user',
       }),
     },
     methods: {
@@ -221,6 +243,11 @@
               this.isDisabled = true
               this.isSubmitted = true
               this.$emit('formSubmitted', 'isSubmitted')
+
+              // Adding model to store
+              this.model.clientId = this.user.id
+              this.model.dateDeadline = moment(this.model.dateDeadline).format('dd/mm/yyyy')
+              store.dispatch("addModel",  this.model);
             }
           })
 
@@ -236,7 +263,7 @@
         }
       },
       deleteDropFile(index) {
-        this.form_data.dropFiles.splice(index, 1)
+        this.model.files.gtlf.splice(index, 1)
       }
     }
   }

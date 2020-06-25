@@ -1,13 +1,16 @@
 <template>
     <div>
-        <div id="card_mymodelsteaser" @click="openModel(data)">
+        <div id="card_mymodelsteaser" @click="openModel(model)">
             <div class="modelteaser_info">
-                <img :src="'/icons/categories/' + data.category.imgUrl" alt="">
-                <div class="modelteaser_name"><b>{{ data.nom }}</b></div>
+                <img :src="'/icons/categories/' + model.category.imgUrl" alt="">
+                <div class="modelteaser_name"><b>{{ model.nom }}</b></div>
+            </div>
+            <div class="modelteaser_date">
+                <p>{{ model.dateCreation }}</p>
             </div>
             <div class="modelteaser_state">
-                <img :src="'/icons/status/' + data.status.imgUrl" alt="">
-                <p :class="data.status.class">{{ data.status.name }}</p>
+                <img :src="'/icons/status/' + model.status.imgUrl" alt="">
+                <p :class="model.status.class">{{ model.status.name }}</p>
             </div>
             <div class="modelteaser_link">
                 <img src="@/assets/icons/arrow_right.svg" alt="Voir le modèle">
@@ -18,9 +21,8 @@
 
 <script>
     export default {
-        name: 'MyModelsTeaser',
         props: {
-            data: {
+            model: {
                 type: [Object, Array],
             },
         },
@@ -66,7 +68,12 @@
                 font-size: 1.25rem;
             }
         }
-
+        .modelteaser_date {
+            p {
+                font-size: 10px;
+                margin-right: 3rem;
+            }
+        }
 
         .modelteaser_state {
             display: flex;

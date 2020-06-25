@@ -2,7 +2,7 @@ const users = [
     {
         id: 1,
         name: 'Robin Giraud',
-        email: 'robin.giraud5@gmail.com',
+        email: 'admin',
         imgUrl: 'http://placehold.it/40x40',
         password: 'admin',
         role: 'Admin'
@@ -18,17 +18,17 @@ const users = [
     {
         id: 3,
         name: 'Gérard Dupont',
-        email: 'gege',
+        email: 'freelance',
         imgUrl: 'http://placehold.it/40x40',
-        password: 'gege',
+        password: 'freelance',
         role: 'Freelance'
     },
     {
         id: 4,
         name: 'Anthony Gault',
-        email: 'anto',
+        email: 'client',
         imgUrl: 'http://placehold.it/40x40',
-        password: 'anto',
+        password: 'client',
         role: 'Client'
     },
     {
