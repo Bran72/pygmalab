@@ -124,13 +124,30 @@
                     message: 'Êtes-vous sur de vouloir prendre en charge la conception de ce modèle ?',
                     type: 'is-success',
                     onConfirm: () => {
-                        console.log(modelId)
+                        //console.log(modelId)
                         store.dispatch("setFreelance",  { modelId: modelId, freelanceId: this.user.id });
+                        this.updateListModels()
+                    }
+                })
+            },
+            updateListModels() {
+                this.copyModels = this.models
+                this.copyModels.map((model, index) => {
+                    if(model.freelanceId === this.user.id) {
+                        this.copyModels.splice(index, 1)
                     }
                 })
             }
         },
         watch: {
+            'copyModels'() {
+                this.copyModels = this.models
+                this.copyModels.map((model, index) => {
+                    if(model.freelanceId === this.user.id) {
+                        this.copyModels.splice(index, 1)
+                    }
+                })
+            },
             'filters.categories'() {
                 this.copyModels = this.models.filter(model => {
                     return this.filters.categories.includes(model.category.name) && (model.nom.toLowerCase().includes(this.filters.search.toLowerCase()) || model.details.description.toLowerCase().includes(this.filters.search.toLowerCase()))
@@ -143,16 +160,22 @@
             },
             'filters.sort'(val) {
                 if (val === 'ASC') {
-                    // MARCHE Pô
                     // this.copyModels = this.copyModels.sort((a,b) => new moment(a.dateCreation).format('DD/MM/YYYY') - new moment(b.dateCreation).format('DD/MM/YYYY'))
                 } else {
-                    // MARCHE Pô
                     // this.copyModels = this.copyModels.sort((a,b) => new moment(b.dateCreation).format('DD/MM/YYYY') - new moment(a.dateCreation).format('DD/MM/YYYY'))
                 }
             }
         },
         mounted() {
             this.copyModels = this.models
+            this.copyModels.map((model, index) => {
+                if(model.freelanceId === this.user.id) {
+                    this.copyModels.splice(index, 1)
+                }
+            })
+
+            console.log(this.models)
+
             this.categories[0].forEach(category => {
                 this.filters.categories.push(category.name)
             })

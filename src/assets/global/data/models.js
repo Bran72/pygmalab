@@ -38,7 +38,7 @@ const models = [
         },
         freelanceId: 3,
         dateCreation: '26/06/2020',
-        dateDeadline: '30/07/2020'
+        dateDeadline: '30/06/2020'
 
     },
     {

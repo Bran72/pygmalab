@@ -34,8 +34,8 @@
                     </svg>
                 </router-link>
             </div>
-            <div class="nav-item" @click="logout">
-                <router-link to="/login">
+            <div class="nav-item">
+                <router-link to="" @click.native="logout">
                     <img alt="Déconnexion" src="../assets/icons/logout.svg">
                 </router-link>
             </div>
@@ -46,6 +46,7 @@
 <script>
     import store from "../store";
     import { mapGetters } from 'vuex'
+    //import moment from 'moment'
 
     export default {
         data() {
@@ -60,7 +61,19 @@
         },
         methods: {
             logout () {
-                store.dispatch("fetchUser",  null);
+                this.$buefy.dialog.confirm({
+                    message: 'Êtes-vous certain de vouloir vous déconnecter ?',
+                    type: 'is-warning',
+                    onConfirm: () => {
+                        store.dispatch("fetchUser",  null);
+                        this.$router.replace('/login')
+
+                        this.$buefy.toast.open({
+                            message: 'Vous avez été déconnecté',
+                            type: 'is-danger'
+                        });
+                    }
+                })
             }
         }
     }

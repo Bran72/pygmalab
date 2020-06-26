@@ -36,6 +36,8 @@ export default {
         }),
     },
     mounted () {
+        console.log(this.models)
+
         this.modelCounter = this.models.filter(model => {
             return model.clientId === this.user.id && this.user.role === 'Client' || model.freelanceId === this.user.id && this.user.role === 'Freelance'
         }).length

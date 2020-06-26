@@ -95,6 +95,10 @@
                 if(user.length === 1) {
                     // console.log('OK')
                     store.dispatch("fetchUser",  user[0]);
+                    this.$buefy.toast.open({
+                        message: 'Bienvenue '+ user[0].name +' !',
+                        type: 'is-success'
+                    });
                     this.$router.replace('/dashboard')
                 } else if (user.length === 0) {
                     console.log('Le compte n\'existe pas')
