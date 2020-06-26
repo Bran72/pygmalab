@@ -132,11 +132,8 @@
             },
             updateListModels() {
                 //this.copyModels = JSON.parse(JSON.stringify(this.models))
-                this.copyModels.map((model, index) => {
-                    if(model.freelanceId === this.user.id) {
-                        this.copyModels.splice(index, 1)
-                    }
-                })
+                this.copyModels = JSON.parse(JSON.stringify(this.models.filter(model => model.freelanceId !== this.user.id)))
+
             }
         },
         watch: {
@@ -159,19 +156,7 @@
             }
         },
         mounted() {
-            //this.copyModels = Array.from(Object.create(this.$store.getters.models))
-            //this.copyModels = JSON.parse(JSON.stringify(this.models))
-            console.log(this.copyModels)
-
-            /*this.copyModels = JSON.parse(JSON.stringify(this.models)).map((model, index) => {
-                console.log(model.freelanceId === this.user.id)
-                if(model.freelanceId === this.user.id) {
-                    this.copyModels.splice(index, 1)
-                }
-            })*/
             this.copyModels = JSON.parse(JSON.stringify(this.models.filter(model => model.freelanceId !== this.user.id)))
-            console.log(this.copyModels)
-            console.log('this.copyModels')
 
             this.categories[0].forEach(category => {
                 this.filters.categories.push(category.name)

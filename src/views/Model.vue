@@ -229,13 +229,16 @@
                     </span>
                 </div>
             </div>
-            <div class="tile is-child is-7 box-sh-outline tile_3d_view">
+            <div class="tile is-child is-7 box-sh-outline tile_3d_view" v-if="model.files.gtlf.length > 0">
                 <img class="img_picto_3d" src="../../public/icons/3d.svg" alt="3D Viewer">
                 <model-gltf
                     backgroundColor="#F3F6FF"
-                    src="/models/gltf/chair/scene.gltf"
+                    src="/models/gltf/iphone_x/scene.gltf"
                 >
                 </model-gltf>
+            </div>
+            <div class="tile is-child is-7 box-sh-outline tile_3d_view tile_no_3d" v-else>
+                Aucun rendu disponible pour l'instant.
             </div>
         </div>
     </section>
@@ -584,6 +587,13 @@
                 position: relative;
                 padding: 0;
                 overflow: hidden;
+
+                &.tile_no_3d {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
 
                 img.img_picto_3d {
                     position: absolute;

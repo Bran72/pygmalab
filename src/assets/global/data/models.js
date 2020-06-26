@@ -22,7 +22,8 @@ const models = [
         },
         photos: ['link1', 'link2'],
         files: {
-            gtlf: [{name: 'export-3d_rendu_iphone12_2020.gtlf', size: 20475484}],
+            //gtlf: [{name: 'export-3d_rendu_iphone12_2020.gtlf', size: 20475484}],
+            gtlf: [],
             photos: [{name: 'iphone12_3d-rendered.png', size: 514}, {name: 'iphone12_3d-rendered(2).png', size: 1034}],
             android: [{name: 'android_src.appbundle', size: 2014}, {name: 'android_src.appbundle', size: 2048}],
             ios: [{name: 'ios_src.xcodeproj', size: 204}, {name: 'ios_src2.xcodeproj', size: 200}],
