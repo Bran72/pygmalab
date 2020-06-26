@@ -116,9 +116,9 @@ const models = [
         },
         clientId: 5,
         status: {
-            name: 'En attente',
-            class: 'enattente',
-            imgUrl: 'enattente.svg'
+            name: 'En cours',
+            class: 'encours',
+            imgUrl: 'encours.svg'
         },
         freelanceId: 3,
         dateCreation: '30/05/2020',
